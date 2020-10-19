@@ -11,7 +11,6 @@ const userMiddleware = async (req, res, next) => {
     }
 
     const payload = jwt.verify(authorization, process.env.ENC);
-    console.log(payload.login);
 
     if (!getByLogin(payload.login)) {
       throw createError(401, 'Please login to view this page.');

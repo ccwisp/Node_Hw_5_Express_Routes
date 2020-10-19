@@ -7,18 +7,15 @@ const write = require('./write');
 const create = (u) => {
   const { login } = u;
   const user = getByLogin(login);
+  console.log(user);
 
   if (user) {
     throw createError(400, 'User already exists');
   }
   const id = uuid.v4();
   db[id] = u;
-
   write(db);
-  console.log(db[id]);
-  const savedUser = { ...db[id] };
-  savedUser.id = id;
-  return savedUser;
+  return db[id];
 };
 
 module.exports = create;
