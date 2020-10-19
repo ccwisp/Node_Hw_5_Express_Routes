@@ -1,8 +1,9 @@
 # Node_Hw_5_Express_Routes
+
 Express.JS routes with error handling
 
 # Endpoints
 
-  - GET /users (must have a token)
-  - POST /signin (with {email,password})
-  - POST /signup (with{email,password,login})
+- GET /users/list (must have a token)
+- POST /login (with {login,password})
+- POST /register (with {login,password,email})

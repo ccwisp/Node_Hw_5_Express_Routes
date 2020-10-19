@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const { create } = require('../../db');
-const createError = require('http-errors');
 
 // registration controller
 

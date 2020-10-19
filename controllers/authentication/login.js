@@ -1,14 +1,14 @@
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { findByEmail } = require('../../db');
+const { getByLogin } = require('../../db');
 const createError = require('http-errors');
 
 // login controller
 const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    const id = findByEmail(email)[0];
-    const user = findByEmail(email)[1];
+    const { login, password } = req.body;
+    const id = getByLogin(login)[0];
+    const user = getByLogin(login)[1];
 
     const { password: realPassword } = user || {};
 
@@ -24,7 +24,7 @@ const login = async (req, res, next) => {
     const token = JWT.sign(id, process.env.ENC);
     return res.status(200).json({ token });
   } catch (err) {
-    return next(createError(400, 'Login failed'));
+    return next(err);
   }
 };
 
