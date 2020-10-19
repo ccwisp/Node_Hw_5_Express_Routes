@@ -10,18 +10,18 @@ const userMiddleware = async (req, res, next) => {
       throw createError(401, 'Please login to view this page.');
     }
 
-    const userId = JWT.verify(authorization.split(' ')[1], process.env.ENC);
-    if (!userId) {
+    const id = JWT.verify(authorization, process.env.ENC);
+    if (!id) {
       throw createError(401, 'Please login to view this page.');
     }
 
-    const user = getUser(userId);
+    const user = getUser(id);
     if (!user) {
       throw createError(401, 'Please login to view this page.');
     }
 
     // If everything is ok, we are assigning the user
-    req.session.user = user;
+    req.user = user;
 
     return next();
   } catch (err) {

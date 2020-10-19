@@ -1,4 +1,4 @@
-const { getUsersList } = require('../db');
+const { getUsersList } = require('../../db');
 
 // Return list of all users
 const getUsers = (req, res, next) => {
@@ -10,4 +10,4 @@ const getUsers = (req, res, next) => {
   }
 };
 
-module.exports = { getUsers };
+module.exports = getUsers;

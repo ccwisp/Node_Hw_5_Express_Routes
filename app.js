@@ -6,15 +6,15 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 
-const DB = require('./db');
+const { connect } = require('./db');
 
-const indexRouter = require('./routes/index');
+const authRouter = require('./routes/authorization');
 const usersRouter = require('./routes/users');
 
 const app = express();
 
 // Establishing connection with the database
-DB.connect();
+connect();
 
 // view engine setup for rendering error page
 
@@ -27,10 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 // Access static files in public folder via localhost/images/... or localhost/stylesheet/...
 app.use(express.static('public'));
 
-app.use('/', indexRouter);
-
 app.use('/users', usersRouter);
-
+app.use('/', authRouter);
 // catch 404 and forward to error handler
 // As if routers above were not triggered, then page is invalid
 app.use(function (req, res, next) {

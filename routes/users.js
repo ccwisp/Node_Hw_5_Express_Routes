@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getUsers } = require('../controllers/user');
+const { getUsers } = require('../controllers');
 
 // Simple authentication check with a token
 
-const authMiddleware = require('../middlewares/user');
+const secure = require('../middlewares/authorization');
 
-router.get('/', authMiddleware, getUsers);
+router.get('/list', secure, getUsers);
 
 module.exports = router;
