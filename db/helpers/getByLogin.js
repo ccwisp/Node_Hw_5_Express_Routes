@@ -1,4 +1,4 @@
-// Get user by email
+// Get user by login
 // Need this to find existing users in db
 
 const getByLogin = (l) => {

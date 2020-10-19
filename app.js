@@ -27,8 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 // Access static files in public folder via localhost/images/... or localhost/stylesheet/...
 app.use(express.static('public'));
 
-app.use('/users', usersRouter);
-app.use('/', authRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/', authRouter);
 // catch 404 and forward to error handler
 // As if routers above were not triggered, then page is invalid
 app.use(function (req, res, next) {

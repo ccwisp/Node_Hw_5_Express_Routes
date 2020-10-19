@@ -8,12 +8,12 @@ const getUsersList = () => {
     Object.entries(db).forEach((u) => {
       const user = { ...u[1] };
       user.id = u[0];
-      user.password = undefined;
+      user.password = null;
       users.push(user);
     });
     return users;
   } catch (err) {
-    throw createError(300, 'Cannot retrieve list of users');
+    throw createError(500, 'Cannot retrieve list of users');
   }
 };
 

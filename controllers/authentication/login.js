@@ -1,4 +1,4 @@
-const JWT = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { getByLogin } = require('../../db');
 const createError = require('http-errors');
@@ -20,9 +20,17 @@ const login = async (req, res, next) => {
     if (!validReg) {
       return next(createError(400, 'Invalid credentials'));
     }
+    //use the payload to store information about the user such as username, user role, etc.
 
-    const token = JWT.sign(id, process.env.ENC);
-    return res.status(200).json({ token });
+    const payload = user;
+
+    //create the access token with the shorter lifespan
+    const accessToken = jwt.sign(payload, process.env.ENC, {
+      algorithm: 'HS256',
+      expiresIn: 66666,
+    });
+
+    return res.status(200).json(accessToken);
   } catch (err) {
     return next(err);
   }

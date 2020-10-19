@@ -5,12 +5,12 @@ const getUser = (id) => {
   try {
     const user = db[id];
     if (!user) {
-      throw createError(403, 'User not found');
+      throw createError(500, 'User not found');
     }
     user.id = id;
     return user;
   } catch (err) {
-    throw createError(400, 'Cannot retrieve the user');
+    throw createError(500, 'Cannot retrieve the user');
   }
 };
 

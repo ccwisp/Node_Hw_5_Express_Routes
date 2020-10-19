@@ -4,7 +4,7 @@ const { getUsersList } = require('../../db');
 const getUsers = (req, res, next) => {
   try {
     const users = getUsersList();
-    return res.status(200).json({ users });
+    return res.status(200).json(users);
   } catch (err) {
     return next(err);
   }
